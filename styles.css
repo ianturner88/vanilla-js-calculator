@@ -22,7 +22,7 @@
   justify-content: center;
   align-content: center;
   grid-template-columns: repeat(4, 100px);
-  min-height: 500px;
+  min-height: 900px;
   padding: 0;
 }
 
@@ -32,4 +32,8 @@
 
 .screen {
   grid-column: span 4;
+  background-color: black;
+  border: 1px solid black;
+  min-height: 150px;
+  display: flex;
 }
