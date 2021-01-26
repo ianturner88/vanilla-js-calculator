@@ -17,6 +17,10 @@
   border: 1px solid white;
 }
 
+.container > button:hover {
+  background-color: blue;
+}
+
 .container {
   display: grid;
   justify-content: center;
@@ -30,10 +34,28 @@
   grid-column: span 2;
 }
 
+.previous-operand {
+  color: red;
+  font-size: large;
+  background-color: black;
+}
+
+.current-operand {
+  color: blue;
+  font-size: larger;
+  background-color: black;
+}
+
 .screen {
   grid-column: span 4;
   background-color: black;
-  border: 1px solid black;
+  border: 1px solid white;
   min-height: 150px;
   display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
