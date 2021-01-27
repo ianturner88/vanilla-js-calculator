@@ -1,10 +1,14 @@
 const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-number]');
-const equalButtons = document.querySelectorAll('[data-number]');
-const deleteButtons = document.querySelectorAll('[data-number]');
-const clearButtons = document.querySelectorAll('[data-number]');
-const previousOperandTextElement = document.querySelectorAll('[data-number]');
-const currentOperandTextElement = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operation]');
+const equalButtons = document.querySelectorAll('[data-equals]');
+const deleteButtons = document.querySelectorAll('[data-delete]');
+const clearButtons = document.querySelectorAll('[data-clear]');
+const previousOperandTextElement = document.querySelectorAll(
+  '[data-previous-operand]'
+);
+const currentOperandTextElement = document.querySelectorAll(
+  '[data-current-operand]'
+);
 
 class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
@@ -16,7 +20,6 @@ class Calculator {
   appendNumber(number) {
     // adds the last inputted digit to the current number
     this.currentOperand = this.currentOperand + number;
-    console.log(this.currentOperand);
   }
 
   wipeClean() {
@@ -35,18 +38,13 @@ class Calculator {
   }
 
   add() {
-    console.log('Add:');
     this.previousOperand = this.currentOperand;
-    console.log(this.previousOperand);
-    console.log(this.currentOperand);
   }
 
   operations(operationType) {
-    console.log('Ding ding');
-    console.log(operationType.innerText);
     switch (operationType) {
       case '+':
-        add();
+        calculator.add();
     }
   }
 }
@@ -58,12 +56,14 @@ const calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    console.log('Number: ' + button.innerText);
     calculator.appendNumber(button.innerText);
   });
 });
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    console.log('Operation: ' + button.innerText);
     calculator.operations(button.innerText);
   });
 });
