@@ -12,8 +12,8 @@ const currentOperandTextElement = document.querySelectorAll(
 
 class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
-    this.previousOperand = previousOperandTextElement;
-    this.currentOperand = currentOperandTextElement;
+    this.previousOperand = '';
+    this.currentOperand = '';
     this.answer = '';
   }
 
@@ -37,15 +37,9 @@ class Calculator {
     );
   }
 
-  add() {
-    this.previousOperand = this.currentOperand;
-  }
-
   operations(operationType) {
-    switch (operationType) {
-      case '+':
-        calculator.add();
-    }
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = '';
   }
 }
 
