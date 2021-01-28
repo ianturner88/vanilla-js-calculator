@@ -1,6 +1,15 @@
+const mathOperations = Object.freeze({
+  // enums for the math operations
+
+  ADD: '+',
+  SUBTRACT: '-',
+  MULTIPLY: 'x',
+  DIVIDE: '/',
+});
+
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
-const equalButtons = document.querySelectorAll('[data-equals]');
+const equalButtons = document.querySelectorAll('[data-equal]');
 const deleteButton = document.querySelectorAll('[data-delete]');
 const clearButtons = document.querySelectorAll('[data-clear]');
 const previousOperandTextElement = document.querySelectorAll(
@@ -20,7 +29,21 @@ class Calculator {
 
   renderDisplay() {}
 
-  equals() {}
+  equals() {
+    // computes the user requested mathematical operation
+
+    switch (this.operation) {
+      case mathOperations.ADD:
+        this.answer =
+          parseInt(this.currentOperand, 10) +
+          parseInt(this.previousOperand, 10);
+
+      case mathOperations.SUBTRACT:
+        this.answer =
+          parseInt(this.currentOperand, 10) -
+          parseInt(this.previousOperand, 10);
+    }
+  }
 
   appendNumber(number) {
     // adds the last inputted digit to the current number
@@ -74,5 +97,7 @@ deleteButton.forEach((button) => {
 });
 
 equalButtons.forEach((button) => {
-  button.addEventListener('click', () => {});
+  button.addEventListener('click', () => {
+    calculator.equals();
+  });
 });
