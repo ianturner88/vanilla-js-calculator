@@ -15,7 +15,12 @@ class Calculator {
     this.previousOperand = '';
     this.currentOperand = '';
     this.answer = '';
+    this.operation = '';
   }
+
+  renderDisplay() {}
+
+  equals() {}
 
   appendNumber(number) {
     // adds the last inputted digit to the current number
@@ -31,13 +36,17 @@ class Calculator {
 
   delete() {
     // deletes the last character of the current operand
+    // activated when the DELETE button is selected
     this.currentOperand = this.currentOperand.slice(0, -1);
   }
 
   operations(operationType) {
+    // activated when '+', '-', '÷', or 'x' is hit
     // transfer the current operand to the previous operand once a math operation is selected
     this.previousOperand = this.currentOperand;
     this.currentOperand = '';
+    // store the operation to be preformed
+    this.operation = operationType;
   }
 }
 
@@ -62,4 +71,8 @@ deleteButton.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.delete();
   });
+});
+
+equalButtons.forEach((button) => {
+  button.addEventListener('click', () => {});
 });
