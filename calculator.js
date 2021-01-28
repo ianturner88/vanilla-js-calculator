@@ -1,7 +1,7 @@
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const equalButtons = document.querySelectorAll('[data-equals]');
-const deleteButtons = document.querySelectorAll('[data-delete]');
+const deleteButton = document.querySelectorAll('[data-delete]');
 const clearButtons = document.querySelectorAll('[data-clear]');
 const previousOperandTextElement = document.querySelectorAll(
   '[data-previous-operand]'
@@ -31,13 +31,11 @@ class Calculator {
 
   delete() {
     // deletes the last character of the current operand
-    this.currentOperand = this.currentOperand.substring(
-      0,
-      this.currentOperand - 1
-    );
+    this.currentOperand = this.currentOperand.slice(0, -1);
   }
 
   operations(operationType) {
+    // transfer the current operand to the previous operand once a math operation is selected
     this.previousOperand = this.currentOperand;
     this.currentOperand = '';
   }
@@ -50,14 +48,18 @@ const calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    console.log('Number: ' + button.innerText);
     calculator.appendNumber(button.innerText);
   });
 });
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    console.log('Operation: ' + button.innerText);
     calculator.operations(button.innerText);
+  });
+});
+
+deleteButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    calculator.delete();
   });
 });
