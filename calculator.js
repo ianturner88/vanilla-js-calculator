@@ -11,10 +11,10 @@ const operationButtons = document.querySelectorAll('[data-operation]');
 const equalButtons = document.querySelectorAll('[data-equal]');
 const deleteButton = document.querySelectorAll('[data-delete]');
 const clearButtons = document.querySelectorAll('[data-clear]');
-const previousOperandTextElement = document.querySelectorAll(
+const previousOperandTextElement = document.querySelector(
   '[data-previous-operand]'
 );
-const currentOperandTextElement = document.querySelectorAll(
+const currentOperandTextElement = document.querySelector(
   '[data-current-operand]'
 );
 
@@ -27,6 +27,7 @@ class Calculator {
   }
 
   renderDisplay() {
+    console.log(previousOperandTextElement);
     currentOperandTextElement.innerText = `${this.currentOperand}`;
     const three = 3;
   }
