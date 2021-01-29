@@ -1,6 +1,5 @@
 const mathOperations = Object.freeze({
   // enums for the math operations
-
   ADD: '+',
   SUBTRACT: '-',
   MULTIPLY: 'x',
@@ -27,27 +26,52 @@ class Calculator {
     this.operation = '';
   }
 
-  renderDisplay() {}
+  renderDisplay() {
+    currentOperandTextElement.innerText = `${this.currentOperand}`;
+    const three = 3;
+  }
 
   equals() {
     // computes the user requested mathematical operation
 
     switch (this.operation) {
       case mathOperations.ADD:
+        // adds the 2 operands together
         this.answer =
           parseInt(this.currentOperand, 10) +
           parseInt(this.previousOperand, 10);
+        break;
 
       case mathOperations.SUBTRACT:
+        // subtracts the 2 operands
         this.answer =
-          parseInt(this.currentOperand, 10) -
+          parseInt(this.previousOperand, 10) -
+          parseInt(this.currentOperand, 10);
+        break;
+
+      case mathOperations.MULTIPLY:
+        // multiplies the 2 operands
+        this.answer =
+          parseInt(this.currentOperand, 10) *
           parseInt(this.previousOperand, 10);
+        break;
+
+      case mathOperations.DIVIDE:
+        // divides the 2 operands
+        this.answer =
+          parseInt(this.previousOperand, 10) /
+          parseInt(this.currentOperand, 10);
+        break;
     }
+    console.log(this.answer);
   }
 
   appendNumber(number) {
     // adds the last inputted digit to the current number
     this.currentOperand = this.currentOperand + number;
+    calculator.renderDisplay();
+
+    console.log(this.currentOperand);
   }
 
   wipeClean() {
