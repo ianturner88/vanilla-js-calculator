@@ -8,9 +8,9 @@ const mathOperations = Object.freeze({
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
-const equalButtons = document.querySelectorAll('[data-equal]');
-const deleteButton = document.querySelectorAll('[data-delete]');
-const clearButtons = document.querySelectorAll('[data-clear]');
+const deleteButton = document.querySelector('[data-delete]');
+const clearButton = document.querySelector('[data-clear]');
+const equalButton = document.querySelector('[data-equal]');
 const previousOperandTextElement = document.querySelector(
   '[data-previous-operand]'
 );
@@ -19,7 +19,7 @@ const currentOperandTextElement = document.querySelector(
 );
 
 class Calculator {
-  constructor(previousOperandTextElement, currentOperandTextElement) {
+  constructor() {
     this.previousOperand = '';
     this.currentOperand = '';
     this.answer = '';
@@ -27,9 +27,7 @@ class Calculator {
   }
 
   renderDisplay() {
-    console.log(previousOperandTextElement);
     currentOperandTextElement.innerText = `${this.currentOperand}`;
-    const three = 3;
   }
 
   equals() {
@@ -64,15 +62,12 @@ class Calculator {
           parseInt(this.currentOperand, 10);
         break;
     }
-    console.log(this.answer);
   }
 
   appendNumber(number) {
     // adds the last inputted digit to the current number
     this.currentOperand = this.currentOperand + number;
     calculator.renderDisplay();
-
-    console.log(this.currentOperand);
   }
 
   wipeClean() {
@@ -115,14 +110,14 @@ operationButtons.forEach((button) => {
   });
 });
 
-deleteButton.forEach((button) => {
-  button.addEventListener('click', () => {
-    calculator.delete();
-  });
+deleteButton.addEventListener('click', (e) => {
+  calculator.delete();
 });
 
-equalButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    calculator.equals();
-  });
+equalButton.addEventListener('click', (e) => {
+  calculator.equals();
+});
+
+clearButton.addEventListener('click', (e) => {
+  calculator.wipeClean();
 });
