@@ -36,7 +36,37 @@ class Calculator {
     previousOperandTextElement.innerText = `${this.previousOperand}`;
   }
 
+  maxDecimalLength() {
+    // determines the maximum number of decimals allowed
+    var previousOperandNumberDecimals = 0;
+    var currentOperandNumberDecimals = 0;
+
+    // determines the max number of decimals allowed
+    const arrPreviousOperand = this.previousOperand.split('.');
+    const arrCurrentOperand = this.currentOperand.split('.');
+
+    if (arrPreviousOperand.length === 2) {
+      // activated only if the input number has a decimal point
+      previousOperandNumberDecimals = arrPreviousOperand[1].length;
+    }
+
+    if (arrCurrentOperand.length === 2) {
+      // activated only if the input number has a decimal point
+      currentOperandNumberDecimals = arrCurrentOperand[1].length;
+    }
+
+    if (previousOperandNumberDecimals > currentOperandNumberDecimals) {
+      // ensures the max amount is identified
+      currentOperandNumberDecimals = previousOperandNumberDecimals;
+    }
+
+    // the most allowable number of decimals is returned
+    return currentOperandNumberDecimals;
+  }
+
   equals() {
+    const numberOfDecimals = calculator.maxDecimalLength();
+
     // convert the string to a number
     this.currentOperand = parseFloat(this.currentOperand);
     this.previousOperand = parseFloat(this.previousOperand);
