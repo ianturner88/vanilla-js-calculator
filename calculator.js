@@ -42,7 +42,6 @@ class Calculator {
     this.previousOperand = parseFloat(this.previousOperand);
 
     // computes the user requested mathematical operation
-
     switch (this.operation) {
       case mathOperations.ADD:
         // adds the 2 operands together
@@ -71,8 +70,17 @@ class Calculator {
         break;
     }
 
+    // convert both numerical values to strings
+    this.currentOperand = this.currentOperand.toString();
+    this.previousOperand = this.previousOperand.toString();
+
+    // allows the user to see what the operands were and the mathematical operation that was preformed
+    this.previousOperand =
+      this.previousOperand + ' ' + this.operation + ' ' + this.currentOperand;
+
     // output the sum to the screen
     this.currentOperand = this.answer;
+
     calculator.renderDisplay();
   }
 
