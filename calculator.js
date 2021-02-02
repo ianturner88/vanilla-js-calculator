@@ -1,9 +1,13 @@
+testVar = 4;
+placeHolder = 'Toronto';
+
 const mathOperations = Object.freeze({
   // enums for the math operations
   ADD: '+',
   SUBTRACT: '-',
   MULTIPLY: 'x',
   DIVIDE: '/',
+  DECIMAL: '.',
 });
 
 const numberButtons = document.querySelectorAll('[data-number]');
@@ -31,14 +35,19 @@ class Calculator {
   }
 
   equals() {
+    this.answer = +this.currentOperand + +this.previousOperand;
+    this.answer = this.answer.toFixed(2);
+
+    // convert the string to a number
+    this.currentOperand = Number(this.currentOperand);
+    this.previousOperand = Number(this.previousOperand);
+
     // computes the user requested mathematical operation
 
     switch (this.operation) {
       case mathOperations.ADD:
         // adds the 2 operands together
-        this.answer =
-          parseInt(this.currentOperand, 10) +
-          parseInt(this.previousOperand, 10);
+        this.answer = this.currentOperand + this.previousOperand;
         break;
 
       case mathOperations.SUBTRACT:
@@ -62,9 +71,16 @@ class Calculator {
           parseInt(this.currentOperand, 10);
         break;
     }
+
+    // output the sum to the screen
+    this.currentOperand = this.answer;
+    calculator.renderDisplay();
   }
 
   appendNumber(number) {
+    // ensures only 1 decimal per number
+    if (number === '.' && this.currentOperand.includes('.') === true) return;
+
     // adds the last inputted digit to the current number
     this.currentOperand = this.currentOperand + number;
     calculator.renderDisplay();
@@ -75,12 +91,18 @@ class Calculator {
     // activated when the CLEAR button is selected
     this.previousOperand = '';
     this.currentOperand = '';
+
+    //update the screen
+    calculator.renderDisplay();
   }
 
   delete() {
     // deletes the last character of the current operand
     // activated when the DELETE button is selected
     this.currentOperand = this.currentOperand.slice(0, -1);
+
+    //update the screen
+    calculator.renderDisplay();
   }
 
   operations(operationType) {
@@ -105,19 +127,23 @@ numberButtons.forEach((button) => {
 });
 
 operationButtons.forEach((button) => {
+  // stores the operation to be completed
   button.addEventListener('click', () => {
     calculator.operations(button.innerText);
   });
 });
 
 deleteButton.addEventListener('click', (e) => {
+  // deletes the last digit or decimal entered
   calculator.delete();
 });
 
 equalButton.addEventListener('click', (e) => {
+  // computes the desired mathematical operation
   calculator.equals();
 });
 
 clearButton.addEventListener('click', (e) => {
+  // reset the current and previous operand
   calculator.wipeClean();
 });
