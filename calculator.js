@@ -64,6 +64,13 @@ class Calculator {
     return currentOperandNumberDecimals;
   }
 
+  cleanAnswer(numberOfDecimals) {
+    // ensures the answer does not exceed the maximum amount of decimals allowed
+    var finalAnswer = this.answer;
+    finalAnswer = finalAnswer.toFixed(numberOfDecimals);
+    return finalAnswer;
+  }
+
   equals() {
     const numberOfDecimals = calculator.maxDecimalLength();
 
@@ -108,8 +115,10 @@ class Calculator {
     this.previousOperand =
       this.previousOperand + ' ' + this.operation + ' ' + this.currentOperand;
 
+    calculator.cleanAnswer(numberOfDecimals);
+
     // output the sum to the screen
-    this.currentOperand = this.answer;
+    this.currentOperand = calculator.cleanAnswer(numberOfDecimals);
 
     calculator.renderDisplay();
   }
