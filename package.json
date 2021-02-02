@@ -1,0 +1,24 @@
+{
+  "name": "vanilla-js-calculator",
+  "version": "1.0.0",
+  "description": "A simple vanilla javascript project I built.",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianturner88/vanilla-js-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://ianturner88.github.io/vanilla-js-calculator",
+  "bugs": {
+    "url": "https://github.com/ianturner88/vanilla-js-calculator/issues"
+  },
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
