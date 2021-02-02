@@ -31,7 +31,9 @@ class Calculator {
   }
 
   renderDisplay() {
+    // outputs the operands to the screen
     currentOperandTextElement.innerText = `${this.currentOperand}`;
+    previousOperandTextElement.innerText = `${this.previousOperand}`;
   }
 
   equals() {
