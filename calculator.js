@@ -87,23 +87,17 @@ class Calculator {
 
       case mathOperations.SUBTRACT:
         // subtracts the 2 operands
-        this.answer =
-          parseInt(this.previousOperand, 10) -
-          parseInt(this.currentOperand, 10);
+        this.answer = this.previousOperand - this.currentOperand;
         break;
 
       case mathOperations.MULTIPLY:
         // multiplies the 2 operands
-        this.answer =
-          parseInt(this.currentOperand, 10) *
-          parseInt(this.previousOperand, 10);
+        this.answer = this.currentOperand * this.previousOperand;
         break;
 
       case mathOperations.DIVIDE:
         // divides the 2 operands
-        this.answer =
-          parseInt(this.previousOperand, 10) /
-          parseInt(this.currentOperand, 10);
+        this.answer = this.previousOperand / this.currentOperand;
         break;
     }
 
