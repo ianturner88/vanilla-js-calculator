@@ -35,12 +35,9 @@ class Calculator {
   }
 
   equals() {
-    this.answer = +this.currentOperand + +this.previousOperand;
-    this.answer = this.answer.toFixed(2);
-
     // convert the string to a number
-    this.currentOperand = Number(this.currentOperand);
-    this.previousOperand = Number(this.previousOperand);
+    this.currentOperand = parseFloat(this.currentOperand);
+    this.previousOperand = parseFloat(this.previousOperand);
 
     // computes the user requested mathematical operation
 
