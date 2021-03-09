@@ -1,6 +1,3 @@
-testVar = 4;
-placeHolder = 'Toronto';
-
 const mathOperations = Object.freeze({
   // enums for the math operations
   ADD: '+',
